@@ -9,6 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.djoij.demoapp.presentation.MainScreen
 import com.djoij.demoapp.ui.theme.DemoAppTheme
 
 class MainActivity : ComponentActivity() {
