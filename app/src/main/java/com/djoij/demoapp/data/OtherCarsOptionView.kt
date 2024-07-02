@@ -41,7 +41,7 @@ fun MoreCarsView() {
         )
         otherOptions.forEachIndexed { ind, it ->
             Spacer(modifier = Modifier.padding(4.dp))
-            MoreCarItem(it.carName, it.distance, it.fuel, R.drawable.bxs_gas_pump)
+            MoreCarItem(it.carName, it.distance, it.fuel, it.isElectric)
             if(ind + 1 != otherOptions.size){
                 Spacer(modifier = Modifier.padding(4.dp))
                 Divider(color = Color.FF4B4B4B, thickness = 1.dp)
@@ -68,7 +68,7 @@ private fun MoreCarsHeader(name: String, resId: Int) {
 }
 
 @Composable
-private fun MoreCarItem(name: String, distance: String, detail: String, percentImg : Int) {
+private fun MoreCarItem(name: String, distance: String, detail: String, isElectric : Boolean) {
     Row(
         Modifier
             .fillMaxWidth()
@@ -88,7 +88,7 @@ private fun MoreCarItem(name: String, distance: String, detail: String, percentI
                 Text(distance, fontSize = 16.sp, color = Color.FFD8D8D8)
                 Spacer(modifier = Modifier.padding(6.dp))
                 Image(
-                    painter = painterResource(id = percentImg),
+                    painter = painterResource(id = if (isElectric) R.drawable.bxs_battery_low else R.drawable.bxs_gas_pump),
                     contentDescription = null,
                     modifier = Modifier.size(18.dp),
                     colorFilter = ColorFilter.tint(Color.FFD8D8D8),
@@ -101,7 +101,10 @@ private fun MoreCarItem(name: String, distance: String, detail: String, percentI
         Box(
             modifier = Modifier
                 .size(30.dp)
-                .background(androidx.compose.ui.graphics.Color.White, shape = RoundedCornerShape(30.dp))
+                .background(
+                    androidx.compose.ui.graphics.Color.White,
+                    shape = RoundedCornerShape(30.dp)
+                )
                 .align(Alignment.CenterVertically)
         ){
             Image(
